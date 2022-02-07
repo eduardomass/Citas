@@ -83,33 +83,13 @@ Las consultas que sean realizadas por correo a mailto:eduardo.mass@ort.edu.ar de
 - Los usuarios se crean solamente con el Email. No hay una registracion.
 - Si el usuario/email YA EXISTE entonces, no lo vuelve a crear. 
 - El email es obligatorio
-- Puede actualizar sus datos
-- Puede Confirmar Fecha de Partido en caso de estar Activa
+- Si cuando entra al sistema, el usuario n otiene password, se lo exige por primera vez
 
-### Partido (Fecha a Confirmar)
+### Cita
 
-**Importante:** `Solo se puede crear un partido por Semana
+- Se crea una cita en base a una fecha
+- Se Asignan los mails a los que el sistema ingresara
 
-- La creacion de la Fecha/Partido lo hace solo el usuario
-- Al crear un partido, los jugadores se pueden Anotar haciendo login, y confirmando que juegan la proxima Fecha/Partido
-- Una vez cumpleatado 10 Jugadores en total no podran anotarse mas.
-- Cuando se confirma el partido, pasa a estado de Sorteo
-
-
-### Proceso de Confirmacion y Sorteo
-
-**Importante:** `Solo se puede sortearse todos los partidos confirmados
-
-- Al sortear, realiza un random de todos los jugadores armando los 2 equipos. (Por ahora sin logica)
-
-### Partido (Sorteado)
-- Los partidos sorteados pueden editar quien Gano, Equipo 1 , Equipo 2 o Empate poniendo el resultado directamente.
-- Al poner el resultado el campo Ganador se autocompleta poniendo 0, 1 o 2
-
-### Tabla de Posiciones
-
-- Mostrar todos los Jugadores por Ranking de Partidos Ganados, Perdidos, Empatados
-- El puntaje de cada jugador se calcula como 3 puntos ganaddo, 2 Puntos Empatado, 1 Punto perdido.
 
 
 [//]: # (referencias externas)
