@@ -18,9 +18,20 @@ namespace Citas.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Index(string email)
+        {
+            if (email == "eduardomass@gmail.com")
+                return RedirectToAction("Index", "Usuario");
+            else
+            {
+                return RedirectToAction("Confirmar", "Usuario");
+            }
         }
 
         public IActionResult Privacy()
