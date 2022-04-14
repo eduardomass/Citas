@@ -1,0 +1,8 @@
+﻿Hacer una pantalla donde obtiene los nombres de los jugador 1 y jugador 2
+El controlador lo recibe y devuelve una vista con el tateti
+El mismo, debe decir quiene son los jugadores que estan jugando
+Extra :
+Decir de quien es cada turno
+Extra II : 
+Ir coleccionando en algun lugar (Estatico) la lista de jugadores que van ganando
+Extra III : Poder mostrar esa vista
