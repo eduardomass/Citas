@@ -1,3 +1,4 @@
+using Citas.Datos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -16,6 +17,14 @@ namespace Citas
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            BaseDeDatos.Usuarios.Add(new Models.Usuario()
+            { Id = 1, Nombre = "Edu", Apellido = "Mass" });
+            BaseDeDatos.Usuarios.Add(new Models.Usuario()
+            { Id = 2, Nombre = "Roberto", Apellido = "Mass" });
+            BaseDeDatos.Usuarios.Add(new Models.Usuario()
+            { Id = 3, Nombre = "Carlitos", Apellido = "Mass" });
+
+
         }
 
         public IConfiguration Configuration { get; }

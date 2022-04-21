@@ -10,5 +10,6 @@ namespace Citas.Models
         public string Mensaje { get; set; }
 
         public string Nombre { get; set; }
+        public int Id { get; set; }
     }
 }
