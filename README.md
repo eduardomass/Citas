@@ -64,7 +64,7 @@ services.AddDbContext<%NOMBRE DEL DBCONTEXT%>(options =>
    options.UseSqlite(@"filename=%PATH DEL ARCHIVO DE SQLLITE%.db"));
    
 - Contexto
-
+```C#
  public class %NOMBRE DEL DBCONTEXT% : DbContext
     {
         public %NOMBRE DEL DBCONTEXT%(DbContextOptions opciones) : base(opciones)
@@ -72,7 +72,7 @@ services.AddDbContext<%NOMBRE DEL DBCONTEXT%>(options =>
 
         }
         public DbSet<%Modelo%> %Modelo en Plural% { get; set; }
-
+```
 ---------------------------------------
 
 
