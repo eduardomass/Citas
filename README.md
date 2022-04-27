@@ -62,6 +62,16 @@ Microsoft.EntityFramworkCore.SqlLite
 
 services.AddDbContext<%NOMBRE DEL DBCONTEXT%>(options => 
    options.UseSqlite(@"filename=%PATH DEL ARCHIVO DE SQLLITE%.db"));
+   
+- Contexto
+
+ public class %NOMBRE DEL DBCONTEXT% : DbContext
+    {
+        public %NOMBRE DEL DBCONTEXT%(DbContextOptions opciones) : base(opciones)
+        {
+
+        }
+        public DbSet<%Modelo%> %Modelo en Plural% { get; set; }
 
 ---------------------------------------
 
