@@ -52,7 +52,13 @@ Las consultas que sean realizadas por correo a mailto:eduardo.mass@ort.edu.ar de
 
 ---------------------------------------
 
-## SQL Lite
+<details>
+  <summary>## SQL Lite</summary>
+  
+  
+
+
+
 
 - Entity Framework
 
@@ -75,6 +81,8 @@ public class %NOMBRE DEL DBCONTEXT% : DbContext
    public DbSet<%Modelo%> %Modelo en Plural% { get; set; }
 }
 ```
+   
+   </details>
 ---------------------------------------
 
 
