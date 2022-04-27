@@ -56,13 +56,14 @@ Las consultas que sean realizadas por correo a mailto:eduardo.mass@ort.edu.ar de
 
 - Entity Framework
 
-Microsoft.EntityFramworkCore.SqlLite
+> Microsoft.EntityFramworkCore.SqlLite
 
 - StartUp.cs , metodo public void ConfigureServices(IServiceCollection services)
-
+```C#
 services.AddDbContext<%NOMBRE DEL DBCONTEXT%>(options => 
    options.UseSqlite(@"filename=%PATH DEL ARCHIVO DE SQLLITE%.db"));
-   
+```
+
 - Contexto
 ```C#
 public class %NOMBRE DEL DBCONTEXT% : DbContext
