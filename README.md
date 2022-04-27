@@ -57,6 +57,10 @@ Las consultas que sean realizadas por correo a mailto:eduardo.mass@ort.edu.ar de
 - Entity Framework
 Microsoft.EntityFramworkCore.SqlLite
 
+- StartUp.cs
+services.AddDbContext<%NOMBRE DEL DBCONTEXT%>(options => 
+   options.UseSqlite(@"filename=%PATH DEL ARCHIVO DE SQLLITE%.db"));
+
 ---------------------------------------
 
 
