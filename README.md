@@ -52,6 +52,14 @@ Las consultas que sean realizadas por correo a mailto:eduardo.mass@ort.edu.ar de
 
 ---------------------------------------
 
+## SQL Lite
+
+- Entity Framework
+Microsoft.EntityFramworkCore.SqlLite
+
+---------------------------------------
+
+
 ## Entidades básicas 📄
 
 - Cita
