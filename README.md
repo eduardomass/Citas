@@ -65,13 +65,14 @@ services.AddDbContext<%NOMBRE DEL DBCONTEXT%>(options =>
    
 - Contexto
 ```C#
- public class %NOMBRE DEL DBCONTEXT% : DbContext
-    {
-        public %NOMBRE DEL DBCONTEXT%(DbContextOptions opciones) : base(opciones)
-        {
+public class %NOMBRE DEL DBCONTEXT% : DbContext
+{
+   public %NOMBRE DEL DBCONTEXT%(DbContextOptions opciones) : base(opciones)
+   {
 
-        }
-        public DbSet<%Modelo%> %Modelo en Plural% { get; set; }
+   }
+   public DbSet<%Modelo%> %Modelo en Plural% { get; set; }
+}
 ```
 ---------------------------------------
 
