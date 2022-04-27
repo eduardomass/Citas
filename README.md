@@ -54,19 +54,28 @@ Las consultas que sean realizadas por correo a mailto:eduardo.mass@ort.edu.ar de
 ## Base de Datos / SQL Lite
 <details>
   <summary>(Mostrar mas)</summary>
-- Instalacion de SQL Lite [Db browser sqlite]
-- Entity Framework
-> Microsoft.EntityFramworkCore.SqlLite
-- Configuracion de Mildware (todo el proyecto misma base)
--- Clase : StartUp.cs
--- Metodo 
-```C#
-public void ConfigureServices(IServiceCollection services)
--- Agregar
-```C#
+
+  - Instalacion de SQL Lite [Db browser sqlite]
+  - Entity Framework
+
+  > Microsoft.EntityFramworkCore.SqlLite
+
+  - Configuracion de Mildware (todo el proyecto misma base)
+
+  -- Clase : StartUp.cs
+
+  -- Metodo 
+
+  ```C#
+
+  public void ConfigureServices(IServiceCollection services)
+
+  -- Agregar
+
+  ```C#
   services.AddDbContext<%NOMBRE DEL DBCONTEXT%>(options => 
    options.UseSqlite(@"filename=%PATH DEL ARCHIVO DE SQLLITE%.db"));
-```
+  ```
 
 - Contexto
 ```C#
