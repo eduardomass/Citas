@@ -65,11 +65,13 @@ Las consultas que sean realizadas por correo a mailto:eduardo.mass@ort.edu.ar de
     - Metodo 
     ```C#
     public void ConfigureServices(IServiceCollection services)
+    
     - Agregar
-    ```C#
+    
+  ```C#
     services.AddDbContext<%NOMBRE DEL DBCONTEXT%>(options => 
     options.UseSqlite(@"filename=%PATH DEL ARCHIVO DE SQLLITE%.db"));
-    ```
+  ```
 
 - Contexto
 ```C#
