@@ -84,6 +84,13 @@ public class %NOMBRE DEL DBCONTEXT% : DbContext
    public DbSet<%Modelo%> %Modelo en Plural% { get; set; }
 }
 ```
+  
+  - Database to Model
+  
+  > dotnet ef dbcontext scaffold
+  > dotnet ef dbcontext scaffold "Server=.\SQLEXPRESS;Database=SchoolDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
+  
+  
    
    </details>
 ---------------------------------------
