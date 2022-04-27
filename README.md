@@ -53,7 +53,7 @@ Las consultas que sean realizadas por correo a mailto:eduardo.mass@ort.edu.ar de
 ---------------------------------------
 
 <details>
-  <summary>## SQL Lite</summary>
+  ## SQL Lite<summary>(Mostrar mas)</summary>
   
   
 
