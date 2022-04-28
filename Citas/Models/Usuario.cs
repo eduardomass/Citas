@@ -9,6 +9,7 @@ namespace Citas.Models
     public class Usuario
     {
         [Display(Name = "Clave")]
+        [Key]
         public int Id { get; set; }
         
         
