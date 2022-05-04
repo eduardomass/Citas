@@ -51,6 +51,50 @@ Las consultas que sean realizadas por correo a mailto:eduardo.mass@ort.edu.ar de
 - Para la visualización se recomienda utilizar [Bootstrap], pero se puede utilizar cualquier herramienta que el grupo considere.
 
 ---------------------------------------
+## Base de Datos / SQL Lite
+<details>
+  <summary>(Mostrar mas)</summary>
+
+  - Instalacion de SQL Lite [Db browser sqlite]
+  - Entity Framework
+
+  > Microsoft.EntityFramworkCore.SqlLite
+
+  - Configuracion de Mildware (todo el proyecto misma base)
+    - Clase : StartUp.cs
+    - Metodo 
+    ```C#
+    public void ConfigureServices(IServiceCollection services)
+    
+    - Agregar
+    
+  ```C#
+    services.AddDbContext<%NOMBRE DEL DBCONTEXT%>(options => 
+    options.UseSqlite(@"filename=%PATH DEL ARCHIVO DE SQLLITE%.db"));
+  ```
+
+- Contexto
+```C#
+public class %NOMBRE DEL DBCONTEXT% : DbContext
+{
+   public %NOMBRE DEL DBCONTEXT%(DbContextOptions opciones) : base(opciones)
+   {
+
+   }
+   public DbSet<%Modelo%> %Modelo en Plural% { get; set; }
+}
+```
+  
+  - Database to Model
+  
+  > dotnet ef dbcontext scaffold
+  > dotnet ef dbcontext scaffold "Server=.\SQLEXPRESS;Database=SchoolDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
+  
+  
+   
+   </details>
+---------------------------------------
+
 
 ## Entidades básicas 📄
 
