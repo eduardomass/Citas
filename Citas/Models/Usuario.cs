@@ -22,5 +22,7 @@ namespace Citas.Models
         public string Email { get; set; }
 
         public string Password { get; set; }
+
+        public ICollection<Cita> Citas { get; set; }
     }
 }
