@@ -16,9 +16,5 @@ namespace Citas.Datos
         }
         
         public DbSet<Usuario> Usuarios { get; set; }
-        
-        public DbSet<Citas.Models.Categoria> Categorias { get; set; }
-        
-        public DbSet<Citas.Models.Cita> Citas { get; set; }
     }
 }
