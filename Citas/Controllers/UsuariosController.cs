@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Citas.Datos;
 using Citas.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Citas.Controllers
 {
+    [Authorize(Roles = "ADMIN")] //Autoriza solo ese rol!
+    //[Authorize]
     public class UsuariosController : Controller
     {
         private readonly BaseDeDatos _context;
@@ -23,6 +26,11 @@ namespace Citas.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Usuarios.ToListAsync());
+        }
+        [AllowAnonymous] //deja que el metodo sea anonimo (sin usuario)
+        public async Task<IActionResult> Noautorizado()
+        {
+            return View();
         }
 
         // GET: Usuarios/Details/5
@@ -41,6 +49,11 @@ namespace Citas.Controllers
             }
 
             return View(usuario);
+        }
+
+        public IActionResult Registrarse()
+        {
+            return View();
         }
 
         // GET: Usuarios/Create

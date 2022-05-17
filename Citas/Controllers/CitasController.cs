@@ -7,10 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Citas.Datos;
 using Citas.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.Threading;
 
 namespace Citas.Controllers
 {
-    public class CitasController : Controller
+    [Authorize]
+    public class CitasController : ControladorBase
     {
         private readonly BaseDeDatos _context;
 
@@ -22,11 +26,26 @@ namespace Citas.Controllers
         // GET: Citas
         public async Task<IActionResult> Index()
         {
-            var baseDeDatos = _context
+            //var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+            int idUsuario = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            string rol = User.FindFirstValue(ClaimTypes.Role);
+            if (rol.Equals("ADMIN"))
+            {
+                var baseDeDatosDeUsuario = _context
                 .Citas
                 .Include(c => c.Categoria)
                 .Include(c => c.Usuario);
-            return View(await baseDeDatos.ToListAsync());
+                return View(await baseDeDatosDeUsuario.ToListAsync());
+            }
+            else
+            {
+                var baseDeDatosDeUsuario = _context
+                .Citas
+                .Where(o => o.UsuarioId == idUsuario)
+                .Include(c => c.Categoria)
+                .Include(c => c.Usuario);
+                return View(await baseDeDatosDeUsuario.ToListAsync());
+            }
         }
 
         // GET: Citas/Details/5
@@ -53,7 +72,14 @@ namespace Citas.Controllers
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Nombre");
+            if (this.EsAdmin)
+            {
+                ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Nombre");
+            }
+            else
+            {
+                ViewData["UsuarioId"] = new SelectList(_context.Usuarios.Where(o=>o.Id == IdUsuario).ToList(), "Id", "Nombre");
+            }
             return View();
         }
 
@@ -83,7 +109,12 @@ namespace Citas.Controllers
                 return NotFound();
             }
 
-            var cita = await _context.Citas.FindAsync(id);
+            var cita = await _context
+                .Citas
+                .Include(c=> c.CitasFechasPosibles)
+                .Where(o=>o.Id == id)
+                .FirstOrDefaultAsync();
+
             if (cita == null)
             {
                 return NotFound();

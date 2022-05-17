@@ -20,5 +20,7 @@ namespace Citas.Datos
         public DbSet<Citas.Models.Categoria> Categorias { get; set; }
         
         public DbSet<Citas.Models.Cita> Citas { get; set; }
+
+        public DbSet<Citas.Models.CitaFechaPosible> CitasFechasPosibles { get; set; }
     }
 }

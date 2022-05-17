@@ -10,22 +10,23 @@ using Citas.Models;
 
 namespace Citas.Controllers
 {
-    public class CategoriasController : Controller
+    public class CitasFechasPosiblesController : Controller
     {
         private readonly BaseDeDatos _context;
 
-        public CategoriasController(BaseDeDatos context)
+        public CitasFechasPosiblesController(BaseDeDatos context)
         {
             _context = context;
         }
 
-        // GET: Categorias
+        // GET: CitasFechasPosibles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categorias.ToListAsync());
+            var baseDeDatos = _context.CitasFechasPosibles.Include(c => c.Cita);
+            return View(await baseDeDatos.ToListAsync());
         }
 
-        // GET: Categorias/Details/5
+        // GET: CitasFechasPosibles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace Citas.Controllers
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias
+            var citaFechaPosible = await _context.CitasFechasPosibles
+                .Include(c => c.Cita)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (categoria == null)
+            if (citaFechaPosible == null)
             {
                 return NotFound();
             }
 
-            return View(categoria);
+            return View(citaFechaPosible);
         }
 
-        // GET: Categorias/Create
+        // GET: CitasFechasPosibles/Create
         public IActionResult Create()
         {
+            ViewData["CitaId"] = new SelectList(_context.Citas, "Id", "Id");
             return View();
         }
 
-        // POST: Categorias/Create
+        // POST: CitasFechasPosibles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Descripcion")] Categoria categoria)
+        public async Task<IActionResult> Create([Bind("Id,Fecha,CitaId")] CitaFechaPosible citaFechaPosible)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categoria);
+                _context.Add(citaFechaPosible);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(categoria);
+            ViewData["CitaId"] = new SelectList(_context.Citas, "Id", "Id", citaFechaPosible.CitaId);
+            return View(citaFechaPosible);
         }
 
-        // GET: Categorias/Edit/5
+        // GET: CitasFechasPosibles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace Citas.Controllers
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias.FindAsync(id);
-            if (categoria == null)
+            var citaFechaPosible = await _context.CitasFechasPosibles.FindAsync(id);
+            if (citaFechaPosible == null)
             {
                 return NotFound();
             }
-            return View(categoria);
+            ViewData["CitaId"] = new SelectList(_context.Citas, "Id", "Id", citaFechaPosible.CitaId);
+            return View(citaFechaPosible);
         }
 
-        // POST: Categorias/Edit/5
+        // POST: CitasFechasPosibles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Descripcion")] Categoria categoria)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Fecha,CitaId")] CitaFechaPosible citaFechaPosible)
         {
-            if (id != categoria.Id)
+            if (id != citaFechaPosible.Id)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace Citas.Controllers
             {
                 try
                 {
-                    _context.Update(categoria);
+                    _context.Update(citaFechaPosible);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoriaExists(categoria.Id))
+                    if (!CitaFechaPosibleExists(citaFechaPosible.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace Citas.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(categoria);
+            ViewData["CitaId"] = new SelectList(_context.Citas, "Id", "Id", citaFechaPosible.CitaId);
+            return View(citaFechaPosible);
         }
 
-        // GET: Categorias/Delete/5
+        // GET: CitasFechasPosibles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +130,31 @@ namespace Citas.Controllers
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias
+            var citaFechaPosible = await _context.CitasFechasPosibles
+                .Include(c => c.Cita)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (categoria == null)
+            if (citaFechaPosible == null)
             {
                 return NotFound();
             }
 
-            return View(categoria);
+            return View(citaFechaPosible);
         }
 
-        // POST: Categorias/Delete/5
+        // POST: CitasFechasPosibles/Delete/5
         [HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var categoria = await _context.Categorias.FindAsync(id);
-            _context.Categorias.Remove(categoria);
+            var citaFechaPosible = await _context.CitasFechasPosibles.FindAsync(id);
+            _context.CitasFechasPosibles.Remove(citaFechaPosible);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoriaExists(int id)
+        private bool CitaFechaPosibleExists(int id)
         {
-            return _context.Categorias.Any(e => e.Id == id);
+            return _context.CitasFechasPosibles.Any(e => e.Id == id);
         }
     }
 }

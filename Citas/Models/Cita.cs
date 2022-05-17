@@ -22,6 +22,8 @@ namespace Citas.Models
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
 
+        public ICollection<CitaFechaPosible> CitasFechasPosibles { get; set; }
+
         //public int Usuario2Id { get; set; }
         //[ForeignKey("Usuario2Id")]
         //public Usuario UsuarioSuplente { get; set; }

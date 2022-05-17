@@ -1,4 +1,5 @@
 using Citas.Datos;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +34,9 @@ namespace Citas
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(ConfigurarcionCookie);
+
             services.AddControllersWithViews();
             services.AddDbContext <BaseDeDatos> (options => options.UseSqlite(@"filename=C:\Temp\Citas.db"));
         }
@@ -55,6 +59,8 @@ namespace Citas
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -63,6 +69,17 @@ namespace Citas
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseCookiePolicy();
+        }
+
+
+        public static void ConfigurarcionCookie(CookieAuthenticationOptions opciones)
+        {
+            opciones.LoginPath = "/Home/Index";
+            opciones.AccessDeniedPath = "/Usuarios/NoAutorizado";
+            opciones.LogoutPath = "/Login/Logout";
+            opciones.ExpireTimeSpan = System.TimeSpan.FromMinutes(10);
         }
     }
 }
