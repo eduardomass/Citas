@@ -196,5 +196,64 @@ namespace Citas.Controllers
         {
             return _context.Citas.Any(e => e.Id == id);
         }
+
+        [HttpPost, ActionName("AddDate")]
+        public IActionResult AddDate(int id, DateTime fecha)
+        {
+            if (id > 0)
+            {
+                try
+                {
+                    _context.CitasFechasPosibles.Add(new CitaFechaPosible()
+                    {
+                        CitaId = id,
+                        Fecha = fecha
+                    });
+                    _context.SaveChanges();
+                    return Ok();
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+
+            }
+            else
+            {
+                throw new Exception("El Id de cita esta mal...");
+            }
+            //return Json(new { success = false, responseText = "The attached file is not supported." });
+            //return Ok();
+        }
+
+
+        [HttpPost, ActionName("DeleteDate")]
+        public IActionResult DeleteDate(int id)
+        {
+            if (id > 0)
+            {
+                try
+                {
+                    var entidadAEliminar = _context.CitasFechasPosibles.FirstOrDefault(o => o.Id == id);
+                    _context
+                        .CitasFechasPosibles
+                        .Remove(entidadAEliminar);
+                        
+                    _context.SaveChanges();
+                    return Ok();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+
+            }
+            else
+            {
+                throw new Exception("El Id de cita esta mal...");
+            }
+            //return Json(new { success = false, responseText = "The attached file is not supported." });
+            //return Ok();
+        }
     }
 }
